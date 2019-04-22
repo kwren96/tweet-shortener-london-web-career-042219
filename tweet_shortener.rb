@@ -30,14 +30,14 @@ def selective_tweet_shortener(tweet)
   end
 end
 
-shortened_tweet_truncator(tweet)
-  if tweet.length > 140 && word_substituter(tweet) > 140
-    newtweet = "#{tweet[0..140]}..."
-  elsif tweet.length > 140 && word_substituter(tweet) <= 140
-    newtweet = word_substituter(tweet)
-  else newtweet = tweet
-end
-newtweet
+def shortened_tweet_truncator(tweet)
+  tweet.split(" ").map do |phrase|
+    if phrase.length > 140
+      word_substituter(phrase)[0..140] + "..."
+    else
+      phrase
+    end
+  end.join(" ")
 end
     
   
