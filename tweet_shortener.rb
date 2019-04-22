@@ -21,23 +21,21 @@ def bulk_tweet_shortener(tweet)
 end
 
 def selective_tweet_shortener(tweet)
-  tweet.split(" ").map do |phrase|
-    if phrase.length > 130
-      word_substituter(phrase)
-    elsif phrase.length <= 130
-      phrase
-    end
-  end
-end
+  if tweet.chars.length > 140  
+    word_substituter(tweet)
+  else 
+    tweet 
+  end 
+end 
+
+
 
 def shortened_tweet_truncator(tweet)
-  tweet.split(" ").map do |phrase|
-    if phrase.length > 140
-      word_substituter(phrase)[0..140] + "..."
-    else
-      phrase
-    end
-  end.join(" ")
-end
+  if word_substituter(tweet).chars.length > 140  
+    truncated = word_substituter(tweet).chars[0..136].push("...").join("")
+  else 
+    word_substituter(tweet) 
+  end 
+end 
     
   
