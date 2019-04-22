@@ -5,16 +5,13 @@ end
 
 def word_substituter(tweet)
   dictionary
-  array = tweet.split(' ')
-  keywords = dictionary.keys
-    array.collect do |word|
-      keywords.each do |word2|
-        if word == word2
-          word = dictionary[word2]
-        end
-      end
-  end
-  array.join(' ')
+  tweet.split(" ").map do |word|
+      if dictionary.keys.include?(word.downcase)
+        word = dictionary[word.downcase]
+      else
+        word
+    end
+  end.join(" ")
 end
 
 def bulk_tweet_shortener(tweets)
